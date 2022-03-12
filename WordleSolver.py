@@ -1,4 +1,4 @@
-#Created by Cooper Mistishin on 3/10.2022
+#Created by Cooper Mistishin on 3/10/2022
 #The list of 12478 Words in "WordDictionary.txt" were retrieved from "https://www.bestwordlist.com/5letterwords.htm"
 
 #Creates a list from the "WordDictionary.txt" file.
