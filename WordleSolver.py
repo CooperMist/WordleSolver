@@ -85,7 +85,7 @@ def main ():
 
         #Remove words with used letters in wrong positions
         
-        res = input("Input a letter that is used, in the wrong position.  If there are no more letters to enter hit enter. (letter, #position)\n")
+        res = input("Input a letter that is used, in the wrong position.  If there are no more letters to enter hit enter. (letter, position#)\n")
         while res != "":
             if res.find(", ") != -1:
                 res = res.split()
@@ -98,7 +98,7 @@ def main ():
                     print("Invalid Input")
             else:
                 print("Invalid Input")
-            res = input("Input a letter that is used, in the wrong position.  If there are no more letters to enter hit enter. (letter, #position)\n")
+            res = input("Input a letter that is used, in the wrong position.  If there are no more letters to enter hit enter. (letter, position#)\n")
 
 
         #Remove words without used letters in the right positions
