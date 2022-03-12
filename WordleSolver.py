@@ -87,9 +87,15 @@ def main ():
         
         res = input("Input a letter that is used, in the wrong position.  If there are no more letters to enter hit enter. (letter, #position)\n")
         while res != "":
-            if res[0][0].isalpha() & res[1].isdigit():
+            if res.find(", ") != -1:
                 res = res.split()
-                words = remove_words_with_letter_at_position(words, res[0][0].upper(), int(res[1]))
+                if res[0][0].isalpha() and res[1].isdigit():
+                    if int(res[1]) >= 1 and int(res[1]) <= 5:               
+                        words = remove_words_with_letter_at_position(words, res[0][0].upper(), int(res[1]))
+                    else:
+                        print("Invalid Position")
+                else:
+                    print("Invalid Input")
             else:
                 print("Invalid Input")
             res = input("Input a letter that is used, in the wrong position.  If there are no more letters to enter hit enter. (letter, #position)\n")
@@ -98,11 +104,17 @@ def main ():
         #Remove words without used letters in the right positions
         res = input("Input a letter that is used, in the right position. If there are no more letters to enter hit enter. (letter, #position)\n")
         while res != "":
-            if res[0][0].isalpha() & res[1].isdigit():
+            if res.find(", ") != -1:
                 res = res.split()
-                words = remove_words_with_letter_not_at_position(words, res[0][0].upper(), int(res[1]))
+                if res[0][0].isalpha() and res[1].isdigit():  
+                    if int(res[1]) >= 1 and int(res[1]) <= 5:               
+                        words = remove_words_with_letter_not_at_position(words, res[0][0].upper(), int(res[1]))
+                    else:
+                        print("Invalid Position")
+                else:
+                    print("Invalid Input")
             else:
-                print("Invalid Input")
+                    print("Invalid Input")
             res = input("Input a letter that is used, in the right position.  If there are no more letters to enter hit enter. (letter, #position)\n")
 
         #Print Resulting List
