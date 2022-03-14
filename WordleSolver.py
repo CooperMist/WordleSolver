@@ -62,6 +62,7 @@ def main ():
             break
         
         #Get words with used letters found
+        #TODO Need to make a list of used letters and make sure they are not inputed as unused letters
         letter = input("Input a letter that is used.  If there are no more letters to enter hit enter.\n")
         while letter != "":
             if letter[0].isalpha():
@@ -87,7 +88,7 @@ def main ():
         
         res = input("Input a letter that is used, in the wrong position.  If there are no more letters to enter hit enter. (letter, position#)\n")
         while res != "":
-            if res.find(", ") != -1:
+            if res.find(", ") != -1 and len(res) == 4:
                 res = res.split()
                 if res[0][0].isalpha() and res[1].isdigit():
                     if int(res[1]) >= 1 and int(res[1]) <= 5:               
@@ -104,7 +105,7 @@ def main ():
         #Remove words without used letters in the right positions
         res = input("Input a letter that is used, in the right position. If there are no more letters to enter hit enter. (letter, #position)\n")
         while res != "":
-            if res.find(", ") != -1:
+            if res.find(", ") != -1 and len(res) == 4:
                 res = res.split()
                 if res[0][0].isalpha() and res[1].isdigit():  
                     if int(res[1]) >= 1 and int(res[1]) <= 5:               
