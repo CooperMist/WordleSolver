@@ -100,7 +100,7 @@ def main ():
         res = input("Input a letter that is used, in the wrong position.  If there are no more letters to enter hit enter. (letter, position#)\n")
         while res != "":
             if res.find(", ") != -1 and len(res) == 4:
-                res = res.split()
+                res = res.strip().split()
                 if res[0][0].isalpha() and res[1].isdigit():
                     if int(res[1]) >= 1 and int(res[1]) <= 5:               
                         words = remove_words_with_letter_at_position(words, res[0][0].upper(), int(res[1]))
