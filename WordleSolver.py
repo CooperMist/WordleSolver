@@ -54,7 +54,8 @@ def write_list_to_file (words):
 
 def main ():
     #Create Word list
-    words = create_list()
+    words = create_list()   
+    used_letters = []  
     start = input("Start a game? (y/n): ")
 
     while True:
@@ -65,22 +66,32 @@ def main ():
         #TODO Need to make a list of used letters and make sure they are not inputed as unused letters
         letter = input("Input a letter that is used.  If there are no more letters to enter hit enter.\n")
         while letter != "":
-            if letter[0].isalpha():
-                letter = letter[0].upper()
-                words = add_words_with_letter(words, letter)
+            if len(letter.strip()) == 1:
+                if letter.isalpha():
+                    letter = letter.upper()
+                    used_letters.append(letter)
+                    words = add_words_with_letter(words, letter)
+                else:
+                    print("Invalid Input, input is not a letter")
             else:
-                print("Invalid Input")
+                print("Invalid Input, only one letter accepted at a time")
             letter = input("Input a letter that is used.  If there are no more letters to enter hit enter.\n")
 
 
         #Remove words with unused letters
         letter2 = input("Input a letter that is not used.  If there are no more letters to enter hit enter.\n")
         while letter2 != "":
-            if letter2[0].isalpha():
-                letter2 = letter2[0].upper()
-                words = remove_words_with_letter(words, letter2)
+            if len(letter2.strip()) == 1:
+                if letter2.isalpha():
+                    letter2 = letter2.upper()
+                    if letter2 not in used_letters:                        
+                        words = remove_words_with_letter(words, letter2)
+                    else:
+                        print("Invalid Input, the letter inputed is a used letter.")
+                else:
+                    print("Invalid Input, input is not a letter.")
             else:
-                print("Invalid Input")
+                print("Invalid Input, only one letter accepted at a time.")
             letter2 = input("Input a letter that is not used.  If there are no more letters to enter hit enter.\n")
 
 
@@ -94,11 +105,14 @@ def main ():
                     if int(res[1]) >= 1 and int(res[1]) <= 5:               
                         words = remove_words_with_letter_at_position(words, res[0][0].upper(), int(res[1]))
                     else:
-                        print("Invalid Position")
+                        print("Invalid Input, the position inputed is not valid. Valid positions are 1, 2, 3, 4, & 5")
                 else:
-                    print("Invalid Input")
+                    if res[0][0].isalpha():
+                        print("Invalid Input, the letter is not a letter")
+                    if res[1].isdigit():
+                        print("Invalid Input, the position is not a number")
             else:
-                print("Invalid Input")
+                    print("Invalid Input, the input is not in the correct format example: a, 5")
             res = input("Input a letter that is used, in the wrong position.  If there are no more letters to enter hit enter. (letter, position#)\n")
 
 
@@ -106,16 +120,19 @@ def main ():
         res = input("Input a letter that is used, in the right position. If there are no more letters to enter hit enter. (letter, #position)\n")
         while res != "":
             if res.find(", ") != -1 and len(res) == 4:
-                res = res.split()
+                res = res.strip().split()
                 if res[0][0].isalpha() and res[1].isdigit():  
                     if int(res[1]) >= 1 and int(res[1]) <= 5:               
                         words = remove_words_with_letter_not_at_position(words, res[0][0].upper(), int(res[1]))
                     else:
-                        print("Invalid Position")
+                        print("Invalid Input, the position inputed is not valid. Valid positions are 1, 2, 3, 4, & 5")
                 else:
-                    print("Invalid Input")
+                    if res[0][0].isalpha():
+                        print("Invalid Input, the letter is not a letter")
+                    if res[1].isdigit():
+                        print("Invalid Input, the position is not a number")
             else:
-                    print("Invalid Input")
+                    print("Invalid Input, the input is not in the correct format example: a, 5")
             res = input("Input a letter that is used, in the right position.  If there are no more letters to enter hit enter. (letter, #position)\n")
 
         #Print Resulting List
