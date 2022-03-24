@@ -57,11 +57,16 @@ def main ():
     words = create_list()   
     used_letters = []  
     start = input("Start a game? (y/n): ")
+    restart = "N"
 
     while True:
         if start.upper() == "N":
             break
-        
+
+        if restart.upper() == "Y":
+            words = create_list()   
+            used_letters = [] 
+
         #Get words with used letters found
         #TODO Need to make a list of used letters and make sure they are not inputed as unused letters
         letter = input("Input a letter that is used.  If there are no more letters to enter hit enter.\n")
@@ -139,7 +144,11 @@ def main ():
         print ("Here is a list of the posible word choices remaining: \n")
         print(words)
 
-        start = input("Do yow want to continue playing the game. (y/n): ")
+        start = input("Do you want to continue playing the game. (y/n): ")
+        if start.upper() == "N":
+            break
+        
+        restart = input("Do you want to start a new game. (y/n): ")
         #Puts new list in a file
         #write_list_to_file (words)
 
