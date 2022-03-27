@@ -1,5 +1,5 @@
 #Created by Cooper Mistishin on 3/10/2022
-#The list of 12478 Words in "WordDictionary.txt" were retrieved from "https://www.bestwordlist.com/5letterwords.htm"
+#The list of words in the text files were retrieved from "https://www.bestwordlist.com/index.htm"
 
 #Creates a list from one of the provided txt files.
 def create_list(word_length) :
@@ -11,6 +11,16 @@ def create_list(word_length) :
         f.close()
     elif word_length == 4:
         with open("WordBanks\FourLetterWords.txt") as f:
+            line = f.readline()
+            words = line.split(" ")
+        f.close()
+    elif word_length == 3:
+        with open("WordBanks\ThreeLetterWords.txt") as f:
+            line = f.readline()
+            words = line.split(" ")
+        f.close()
+    elif word_length == 6:
+        with open("WordBanks\SixLetterWords.txt") as f:
             line = f.readline()
             words = line.split(" ")
         f.close()
@@ -62,7 +72,7 @@ def write_list_to_file (words):
 
 def main ():    
     used_letters = []
-    accepted_word_lengths = [4, 5]  
+    accepted_word_lengths = [3, 4, 5, 6]  
     word_length = "0"
     start = input("Start a game? (y/n): ")
     while True:
