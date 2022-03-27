@@ -1,13 +1,21 @@
 #Created by Cooper Mistishin on 3/10/2022
 #The list of 12478 Words in "WordDictionary.txt" were retrieved from "https://www.bestwordlist.com/5letterwords.htm"
 
-#Creates a list from the "WordDictionary.txt" file.
-def create_list() :
+#Creates a list from one of the provided txt files.
+def create_list(word_length) :
     words = []
-    with open("WordDictionary.txt") as f:
-        line = f.readline()
-        words = line.split(" ")
-    f.close()
+    if word_length == 5:
+        with open("WordBanks\FiveLetterWords.txt") as f:
+            line = f.readline()
+            words = line.split(" ")
+        f.close()
+    elif word_length == 4:
+        with open("WordBanks\FourLetterWords.txt") as f:
+            line = f.readline()
+            words = line.split(" ")
+        f.close()
+    else:
+        print("Invalid length of word")
     return words
 
 #Creates a list of words that have a given letter, using the given list.
@@ -52,11 +60,21 @@ def write_list_to_file (words):
         f.write(word + " ")
     f.close()
 
-def main ():
-    #Create Word list
-    words = create_list()   
-    used_letters = []  
+def main ():    
+    used_letters = []
+    accepted_word_lengths = [4, 5]  
+    word_length = "0"
     start = input("Start a game? (y/n): ")
+    while True:
+        word_length = input("Length of word being guessed?: ")
+        if word_length.strip().isdigit():
+            if int(word_length.strip()) in accepted_word_lengths:
+                break
+            else : 
+                print("Word length " + word_length.strip() + " is not supported.")
+        else :
+            print("Invalid Input, Input is not an integer.")
+    words = create_list(int(word_length.strip()))
     restart = "N"
 
     while True:
@@ -64,8 +82,18 @@ def main ():
             break
 
         if restart.upper() == "Y":
-            words = create_list()   
+            while True:
+                word_length = input("Length of word being guessed?: ")
+                if word_length.strip().isdigit():
+                    if int(word_length.strip()) in accepted_word_lengths:
+                        break
+                    else : 
+                        print("Word length " + word_length.strip() + " is not supported.")
+                else :
+                    print("Invalid Input, Input is not an integer.")
+            words = create_list(int(word_length.strip()))   
             used_letters = [] 
+            restart = "N"
 
         #Get words with used letters found
         #TODO Need to make a list of used letters and make sure they are not inputed as unused letters
@@ -107,7 +135,7 @@ def main ():
             if res.find(", ") != -1 and len(res) == 4:
                 res = res.strip().split()
                 if res[0][0].isalpha() and res[1].isdigit():
-                    if int(res[1]) >= 1 and int(res[1]) <= 5:               
+                    if int(res[1]) >= 1 and int(res[1]) <= int(word_length.strip()):               
                         words = remove_words_with_letter_at_position(words, res[0][0].upper(), int(res[1]))
                     else:
                         print("Invalid Input, the position inputed is not valid. Valid positions are 1, 2, 3, 4, & 5")
@@ -127,7 +155,7 @@ def main ():
             if res.find(", ") != -1 and len(res) == 4:
                 res = res.strip().split()
                 if res[0][0].isalpha() and res[1].isdigit():  
-                    if int(res[1]) >= 1 and int(res[1]) <= 5:               
+                    if int(res[1]) >= 1 and int(res[1]) <= int(word_length.strip()):               
                         words = remove_words_with_letter_not_at_position(words, res[0][0].upper(), int(res[1]))
                     else:
                         print("Invalid Input, the position inputed is not valid. Valid positions are 1, 2, 3, 4, & 5")
