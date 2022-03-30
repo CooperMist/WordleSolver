@@ -148,7 +148,7 @@ def main ():
                     if int(res[1]) >= 1 and int(res[1]) <= int(word_length.strip()):               
                         words = remove_words_with_letter_at_position(words, res[0][0].upper(), int(res[1]))
                     else:
-                        print("Invalid Input, the position inputed is not valid. Valid positions are 1, 2, 3, 4, & 5")
+                        print("Invalid Input, the position inputed is not valid. Valid positions are 1 to " + word_length)
                 else:
                     if res[0][0].isalpha():
                         print("Invalid Input, the letter is not a letter")
@@ -168,7 +168,7 @@ def main ():
                     if int(res[1]) >= 1 and int(res[1]) <= int(word_length.strip()):               
                         words = remove_words_with_letter_not_at_position(words, res[0][0].upper(), int(res[1]))
                     else:
-                        print("Invalid Input, the position inputed is not valid. Valid positions are 1, 2, 3, 4, & 5")
+                        print("Invalid Input, the position inputed is not valid. Valid positions are 1 to " + word_length)
                 else:
                     if res[0][0].isalpha():
                         print("Invalid Input, the letter is not a letter")
