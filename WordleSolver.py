@@ -82,6 +82,7 @@ def main ():
                 break
             else : 
                 print("Word length " + word_length.strip() + " is not supported.")
+                print("Only the word lengths " + str(accepted_word_lengths) + " are supported.")
         else :
             print("Invalid Input, Input is not an integer.")
     words = create_list(int(word_length.strip()))
@@ -99,6 +100,7 @@ def main ():
                         break
                     else : 
                         print("Word length " + word_length.strip() + " is not supported.")
+                        print("Only the word lengths " + str(accepted_word_lengths) + " are supported.")
                 else :
                     print("Invalid Input, Input is not an integer.")
             words = create_list(int(word_length.strip()))   
