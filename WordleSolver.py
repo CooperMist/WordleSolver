@@ -4,28 +4,10 @@
 #Creates a list from one of the provided txt files.
 def create_list(word_length) :
     words = []
-    if word_length == 5:
-        with open("WordBanks\FiveLetterWords.txt") as f:
-            line = f.readline()
-            words = line.split(" ")
-        f.close()
-    elif word_length == 4:
-        with open("WordBanks\FourLetterWords.txt") as f:
-            line = f.readline()
-            words = line.split(" ")
-        f.close()
-    elif word_length == 3:
-        with open("WordBanks\ThreeLetterWords.txt") as f:
-            line = f.readline()
-            words = line.split(" ")
-        f.close()
-    elif word_length == 6:
-        with open("WordBanks\SixLetterWords.txt") as f:
-            line = f.readline()
-            words = line.split(" ")
-        f.close()
-    else:
-        print("Invalid length of word")
+    with open("WordBanks\{}LetterWords.txt".format(str(word_length))) as f:
+        line = f.readline()
+        words = line.split(" ")
+    f.close()
     return words
 
 #Creates a list of words that have a given letter, using the given list.
