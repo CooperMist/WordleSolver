@@ -54,7 +54,7 @@ def write_list_to_file (words):
 
 def main ():    
     used_letters = []
-    accepted_word_lengths = [3, 4, 5, 6]  
+    accepted_word_lengths = [3, 4, 5, 6, 7]  
     word_length = "0"
     start = input("Start a game? (y/n): ")
     while True:
